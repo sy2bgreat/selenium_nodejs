@@ -14,8 +14,13 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
         input.sendKeys(keyword, Key.ENTER);
 
         await driver.wait(until.elementLocated(By.css('.SDkEP')), 10000);
-        let resultElements = await driver.findElement(By.className('yuRUbf'));
-        console.log('[resultElements.length]', resultElements.length);
+        let resultElements = await driver.findElement(By.className('MBeuO'));
+        //console.log('[resultElements.length]', resultElements.getText());
+        let points = resultElements.getText();
+        points.then((res) => {
+            console.log(res);
+        })
+        
 
         try {
             await driver.wait(() => { return false; }, 4000);
