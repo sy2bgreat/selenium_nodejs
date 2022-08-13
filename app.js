@@ -5,22 +5,17 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
     .build();
     try {
         
-        await driver.get('https://www.google.com');
-        // let userAgent = await driver.executeScript("return navigator.userAgent;")
-        // console.log('[UserAgent]', userAgent);
-        let input = await driver.findElement(By.className('gLFyf'));
-
-        let keyword = 'South Korea';
-        input.sendKeys(keyword, Key.ENTER);
-
-        await driver.wait(until.elementLocated(By.css('.SDkEP')), 10000);
-        let resultElements = await driver.findElement(By.className('MBeuO'));
-        //console.log('[resultElements.length]', resultElements.getText());
-        let points = resultElements.getText();
-        points.then((res) => {
-            console.log(res);
-        })
+        await driver.get('https://www.github.com');
         
+        await driver.findElement(By.partialLinkText("Sign in")).click();
+
+        console.log(await driver.getTitle());
+
+        await driver.wait(until.elementLocated(By.className("application-main")), 10000);
+
+        await driver.findElement(By.name("login")).sendKeys("sy2bgreat@gmail.com");
+        await driver.findElement(By.name("password")).sendKeys("####",Key.RETURN);
+      
 
         try {
             await driver.wait(() => { return false; }, 4000);
@@ -33,3 +28,6 @@ const { Builder, By, Key, until } = require('selenium-webdriver');
         driver.quit();
     }
 })();
+
+
+//https://www.browserstack.com/guide/findelement-in-selenium
